@@ -1,4 +1,4 @@
-﻿CLASS zcx_fi_pay_notify DEFINITION
+CLASS zcx_fi_pay_notify DEFINITION
   PUBLIC
   INHERITING FROM cx_static_check
   FINAL

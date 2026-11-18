@@ -1,4 +1,4 @@
-﻿"! Leitura de dados para a notificação de pagamento:
+"! Leitura de dados para a notificação de pagamento:
 "! itens do lote BCM, estado interno BCM do item, pagamento F110
 "! (REGUH/REGUP) e e-mail do fornecedor (LFA1/ADR6).
 CLASS zcl_fi_pay_notify_data DEFINITION

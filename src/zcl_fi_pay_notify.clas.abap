@@ -1,4 +1,4 @@
-﻿"! Notificação automática de pagamentos a fornecedores (F110 + BCM + PAIN.002).
+"! Notificação automática de pagamentos a fornecedores (F110 + BCM + PAIN.002).
 "!
 "! Fluxo:
 "!  1. RBNK_IMPORT_PAYM_STATUS_REPORT -> CL_BNK_PROC_STATUS->STORE( ) -> ALERT( )

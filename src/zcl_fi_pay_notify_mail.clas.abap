@@ -1,4 +1,4 @@
-﻿"! Construção e envio do e-mail de aviso de pagamento via CL_BCS / SAPconnect.
+"! Construção e envio do e-mail de aviso de pagamento via CL_BCS / SAPconnect.
 "! O envio efectivo ocorre no COMMIT WORK de quem chama (job ou tRFC).
 CLASS zcl_fi_pay_notify_mail DEFINITION
   PUBLIC
