@@ -228,7 +228,7 @@ Símbolos de texto: `B01` Selecção · `B02` Modo de execução.
 
 | # | Cenário | Resultado esperado |
 |---|---|---|
-| 1 | PAIN.002 `ACSC` para lote com 1 fornecedor com e-mail | Linha `SENT`, e-mail na SOST com montante, data e documentos REGUP |
+| 1 | PAIN.002 `ACSP` para lote com 1 fornecedor com e-mail | Linha `SENT`, e-mail na SOST com montante, data e documentos REGUP. **Confirmado em DEV (2026-11-18/19):** envio manual (lote 68, fornecedor 41000886) e depois automático via tRFC, recebido na caixa de teste |
 | 2 | Mesmo ficheiro importado outra vez | Sem nova linha e sem novo e-mail |
 | 3 | `RJCT` no item | Sem linha (sem categoria) ou linha `CANCELLED` |
 | 4 | Lote com estado só no grupo (sem itens no PAIN.002) | Uma linha por item, todos `SENT` |
@@ -241,6 +241,17 @@ Símbolos de texto: `B01` Selecção · `B02` Modo de execução.
 | 11 | `PAIN_ACTC` com a categoria posta por engano | Nenhuma linha criada (filtrado por `ZFI_PAY_NOTIF_STSCD`) |
 
 Evidências: SLG1 (objecto `BNK`, subobjecto `PAIN002`), BNK_MONI (estado do item), SE16 `ZFI_PAY_NOTIF`, SOST.
+
+### Estado em 2026-11-19
+
+Confirmado em DEV: cenários 1 e 10. O fluxo completo funciona: PAIN.002 → BAdI → `ZFI_PAY_NOTIF` → tRFC → `CL_BCS` → caixa de correio.
+Pendente: cenários 2–9 e 11 em QAS, job `ZFI_PAY_NOTIFY_JOB`, e os passos antes de produção:
+retirar `ZFI_PAY_NOTIF` de `PAIN_ACTC` no SPRO; deixar `ZFI_PAY_NOTIF_TEST_RCPT` **vazio** em PRD;
+confirmar o remetente no relay SMTP de PRD.
+
+Nota de instalação: no primeiro teste a linha ficou em `PENDING` sem mensagem, porque o tRFC não correu.
+No teste seguinte o envio já foi automático. Se voltar a acontecer, verificar se `ZFI_PAY_NOTIFY_SEND`
+tem a marca *Módulo com capacidade remota* e ver a SM58.
 
 ---
 
